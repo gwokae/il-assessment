@@ -1,0 +1,37 @@
+{
+  "name": "il-assessment",
+  "version": "0.0.1",
+  "description": "Dereshi",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel -p 6612 src/index.html",
+    "lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gwokae/il-assessment.git"
+  },
+  "author": "Leonard Lin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gwokae/il-assessment/issues"
+  },
+  "homepage": "https://github.com/gwokae/il-assessment#readme",
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx": "0.0.2",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "parcel-bundler": "^1.5.1"
+  },
+  "dependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-preset-react-app": "^3.1.1",
+    "node-sass": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
