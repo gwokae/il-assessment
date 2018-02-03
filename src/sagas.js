@@ -40,6 +40,7 @@ function* signout() {
   yield deleteMatchedUser(matches);
   yield put({ type: ACTIONS.USER_SINGOUT_SUCCESSED });
 }
+
 export default function* defaultSaga() {
   yield takeEvery(ACTIONS.USER_SINGIN_REQUESTED, signin);
   yield takeEvery(ACTIONS.USER_SINGOUT_REQUESTED, signout);
