@@ -4,16 +4,14 @@ module.exports = {
     browser: true
   },
   rules: {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
+    'jsx-quotes': ['error', 'prefer-single'],
+    'react/forbid-prop-types': [false],
   },
   plugins: [
     'import',
     'react',
     'jsx'
   ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  parser: 'babel-eslint',
 };
