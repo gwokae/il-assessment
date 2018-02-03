@@ -1,6 +1,14 @@
 export const ACTIONS = {
   USER_SINGIN_REQUESTED: 'USER_SINGIN_REQUESTED',
+  USER_SINGIN_REJECTED: 'USER_SINGIN_REJECTED',
+  USER_SINGIN_SUCCESSED: 'USER_SINGIN_SUCCESSED',
   USER_SINGOUT_REQUESTED: 'USER_SINGOUT_REQUESTED',
+};
+
+export const REASONS = {
+  SIGNIN: {
+    DUPLICATION: 'DUPLICATION',
+  },
 };
 
 export const firebaseConfig = {
@@ -13,5 +21,5 @@ export const firebaseConfig = {
 };
 
 export default {
-  ACTIONS, firebaseConfig,
+  ACTIONS, REASONS, firebaseConfig,
 };

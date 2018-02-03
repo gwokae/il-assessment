@@ -8,7 +8,9 @@ import { ACTIONS } from './constants';
 class App extends React.Component {
   static propTypes = {
     userName: PropTypes.string,
+    singinError: PropTypes.string,
     actions: PropTypes.object.isRequired,
+    loading: PropTypes.bool.isRequired,
   };
   static defaultState = {
     userName: '',
@@ -20,7 +22,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   getChat() {
-    const {actions, userName} = this.props;
+    const { actions, userName } = this.props;
     return (
       <div>
         <h1>Hello {userName}</h1>
@@ -31,7 +33,7 @@ class App extends React.Component {
   getSingin() {
     return (
       <div>
-        <h1>Singin chat</h1>
+        <h1>Sign-in chat</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='userName'>
             Your name:
@@ -39,15 +41,28 @@ class App extends React.Component {
               id='userName'
               name='userName'
               value={this.state.userName}
-              onChange={({ target: { value: userName } }) => (this.setState({ userName })) }
+              onChange={({ target: { value: userName } }) => (this.setState({ userName }))}
               placeholder='Enter your name here'
             />
           </label>
-          <input type='submit' value='Singin' disabled={this.state.userName.trim() === '' }/>
+          <input
+            type='submit'
+            value='Signin'
+            disabled={this.props.loading || this.state.userName.trim() === ''}
+          />
+          { this.props.singinError }
         </form>
       </div>
     );
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const userName = new FormData(e.target).get('userName').trim();
+    this.props.actions.singin(userName);
+    this.setState({ ...App.defaultState });
+  }
+
   render() {
     return (
       this.props.userName ?
@@ -55,21 +70,15 @@ class App extends React.Component {
         this.getSingin()
     );
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    const userName = new FormData(e.target).get('userName').trim();
-    this.props.actions.singin(userName);
-    this.setState({ ...App.defaultState });
-  }
 }
 
 
-const mapStateToProps = ({ userName }) => ({ userName });
+const mapStateToProps = ({ userName, loading, singinError }) => ({ userName, loading, singinError });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    singin: (userName) => ({ type: ACTIONS.USER_SINGIN_REQUESTED, userName }),
-    signout: () => ({ type: ACTIONS.USER_SINGOUT_REQUESTED })
+    singin: userName => ({ type: ACTIONS.USER_SINGIN_REQUESTED, userName }),
+    signout: () => ({ type: ACTIONS.USER_SINGOUT_REQUESTED }),
   }, dispatch),
 });
 
