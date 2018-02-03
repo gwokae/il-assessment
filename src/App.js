@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { ACTIONS } from './constants';
+import Chatroom from './Chatroom';
 
 class App extends React.Component {
   static propTypes = {
@@ -20,15 +21,6 @@ class App extends React.Component {
 
     this.state = { ...App.defaultState };
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  getChat() {
-    const { actions, userName } = this.props;
-    return (
-      <div>
-        <h1>Hello {userName}</h1>
-        <button onClick={actions.signout}>Sign out</button>
-      </div>
-    );
   }
   getSingin() {
     return (
@@ -74,14 +66,20 @@ class App extends React.Component {
   render() {
     return (
       this.props.userName ?
-        this.getChat() :
+        <Chatroom /> :
         this.getSingin()
     );
   }
 }
 
 
-const mapStateToProps = ({ userName, loading, singinError }) => ({ userName, loading, singinError });
+const mapStateToProps = (state) => {
+  const {
+    userName, loading, singinError,
+  } = state;
+
+  return { userName, loading, singinError };
+};
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
