@@ -14,6 +14,7 @@ export default (state = DEFAULTS, action) => {
         ...state,
         userName: action.userName,
         loading: false,
+        singinError: null,
       };
     case ACTIONS.USER_SINGIN_REJECTED: {
       let singinError;
@@ -33,6 +34,12 @@ export default (state = DEFAULTS, action) => {
     case ACTIONS.USER_SINGOUT_REQUESTED:
       return {
         ...state,
+        loading: true,
+      };
+    case ACTIONS.USER_SINGOUT_SUCCESSED:
+      return {
+        ...state,
+        loading: false,
         userName: null,
       };
     default:

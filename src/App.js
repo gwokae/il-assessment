@@ -50,10 +50,18 @@ class App extends React.Component {
             value='Signin'
             disabled={this.props.loading || this.state.userName.trim() === ''}
           />
-          { this.props.singinError }
+          { this.getSinginMessage() }
         </form>
       </div>
     );
+  }
+
+  getSinginMessage() {
+    const { loading, singinError } = this.props;
+
+    if (loading) return 'loading';
+    if (singinError) return singinError;
+    return null;
   }
 
   handleSubmit(e) {
