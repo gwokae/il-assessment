@@ -1,6 +1,6 @@
 import { ACTIONS, REASONS } from './constants';
 
-const DEFAULTS = { loading: false };
+const DEFAULTS = { loading: false, messages: {} };
 export default (state = DEFAULTS, action) => {
   const { type } = action;
   switch (type) {
@@ -41,6 +41,17 @@ export default (state = DEFAULTS, action) => {
         ...state,
         loading: false,
         userName: null,
+      };
+    case ACTIONS.LOAD_MESSAGES_REQUESTED:
+      return {
+        ...state,
+        loading: true,
+        messages: Object.assign({}, state.messages),
+      };
+    case ACTIONS.NEW_MESSAGES_RECEIVED:
+      return {
+        ...state,
+        messages: Object.assign({}, state.messages, action.messages),
       };
     default:
       return state;

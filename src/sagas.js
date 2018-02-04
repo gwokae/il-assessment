@@ -1,15 +1,10 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import firebase from 'firebase/app';
-import 'firebase/database';
-import { ACTIONS, REASONS, firebaseConfig } from './constants';
+import { ACTIONS, REASONS } from './constants';
+import { userDb, messageDb } from './data';
 
 let currentUser;
-firebase.initializeApp(firebaseConfig);
-const userDb = firebase.database().ref('users');
 
-userDb.on('value', (e) => {
-  console.log(e);
-});
 
 function findUsernameMatched({ userName }) {
   return userDb.orderByValue().equalTo(userName).once('value');
@@ -41,7 +36,17 @@ function* signout() {
   yield put({ type: ACTIONS.USER_SINGOUT_SUCCESSED });
 }
 
+function* postMessage({ message }) {
+  yield messageDb.push({
+    message,
+    timestamp: firebase.database.ServerValue.TIMESTAMP,
+    author: currentUser,
+  });
+  yield put({ type: ACTIONS.POST_MESSAGE_SUCCESSED });
+}
+
 export default function* defaultSaga() {
   yield takeEvery(ACTIONS.USER_SINGIN_REQUESTED, signin);
   yield takeEvery(ACTIONS.USER_SINGOUT_REQUESTED, signout);
+  yield takeEvery(ACTIONS.POST_MESSAGE_REQUESTED, postMessage);
 }
