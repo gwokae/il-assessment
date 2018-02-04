@@ -80,8 +80,10 @@ class Chatroom extends React.Component {
       <nav>
         <ul>
           <li><h1>Hello Chatroom</h1></li>
-          <li>{this.props.userName}</li>
-          <li><button onClick={this.props.actions.signout}>Sing out</button></li>
+          <li className='user'>
+            {this.props.userName}
+            <button onClick={this.props.actions.signout}>Sing out</button>
+          </li>
         </ul>
       </nav>
     );
