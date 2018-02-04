@@ -52,9 +52,10 @@ class Chatroom extends React.Component {
   }
   renderMessageItem(msgId) {
     const { author, timestamp, message } = this.props.messages[msgId];
+    const isSelfPostedMessage = author === this.props.userName;
     return (
-      <li key={msgId}>
-        <span className='author'>{author}</span>
+      <li key={msgId} className={isSelfPostedMessage ? 'self' : ''}>
+        <span className='author'>{isSelfPostedMessage ? 'YOU' : author}</span>
         <span className='time'>{new Date(timestamp).toLocaleString()}</span>
         <span className='message'>{message}</span>
       </li>
