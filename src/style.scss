@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 5em;
+}
+
+form {
+  padding: 3em;
+  background-color: lightgoldenrodyellow;
+  border-radius: 1em;
+  input, button {
+    font-size: 36px;
+  }
+  input {
+    &[type='text'] {
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid #666;
+      width: calc(100% - 108px);
+    }
+    &[type='submit'] {
+      background-color: gold;
+      border: 1px solid #000;
+      border-radius: 12px;
+      margin-left: 12px;
+      width: 96px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+  .message {
+    font-size: 18px;
+    line-height: 24px;
+    font-style: italic;
+    &.error {
+      color: hotpink;
+    }
+  }
+}

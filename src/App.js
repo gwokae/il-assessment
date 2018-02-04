@@ -25,18 +25,15 @@ class App extends React.Component {
   getSingin() {
     return (
       <div>
-        <h1>Sign-in chat</h1>
+        <h1>Hello Chat</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='userName'>
-            Your name:
-            <input
-              id='userName'
-              name='userName'
-              value={this.state.userName}
-              onChange={({ target: { value: userName } }) => (this.setState({ userName }))}
-              placeholder='Enter your name here'
-            />
-          </label>
+          <input
+            type='text'
+            name='userName'
+            value={this.state.userName}
+            onChange={({ target: { value: userName } }) => (this.setState({ userName }))}
+            placeholder='Enter your name here'
+          />
           <input
             type='submit'
             value='Signin'
@@ -51,8 +48,8 @@ class App extends React.Component {
   getSinginMessage() {
     const { loading, singinError } = this.props;
 
-    if (loading) return 'loading';
-    if (singinError) return singinError;
+    if (loading) return <div className='message'>loading</div>;
+    if (singinError) return <div className='message error'>{singinError}</div>;
     return null;
   }
 
