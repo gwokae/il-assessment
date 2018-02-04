@@ -47,7 +47,7 @@ class Chatroom extends React.Component {
   renderMessages() {
     const { messages } = this.props;
     return (
-      <ul>{Object.keys(messages).map(this.renderMessageItem)}</ul>
+      <ul className='messages'>{Object.keys(messages).map(this.renderMessageItem)}</ul>
     );
   }
   renderMessageItem(msgId) {
@@ -79,7 +79,7 @@ class Chatroom extends React.Component {
     return (
       <nav>
         <ul>
-          <li><h1>Hello Chatroom</h1></li>
+          <li><h1>Hello Chat</h1></li>
           <li className='user'>
             {this.props.userName}
             <button onClick={this.props.actions.signout}>Sing out</button>

@@ -75,3 +75,41 @@ nav {
     text-decoration: underline;
   }
 }
+
+.messages {
+  display: flex;
+  flex-flow: column-reverse wrap;
+  li {
+    margin-bottom: 1em;
+    > .author, > .time {
+      font-size: 1.1em;
+      line-height: 1.2em;
+    }
+    > .time {
+      margin-left: 0.5em;
+      font-size: 0.8em;
+      color: gray;
+    }
+    > .message {
+      display: block;
+      padding: 0.5em;
+      background: lightgreen;
+      margin-top: 0.5em;
+      border-radius: 0.5em;
+      position: relative;
+      &:after {
+        content: '';
+        display: block;
+        top: -0.5em;
+        left: 0.5em;
+        width: 0;
+        height: 0;
+        position: absolute;
+        background-color: transparent;
+        border-style: solid;
+        border-width: 1em 0 0 1em;
+        border-color: transparent transparent transparent lightgreen;
+      }
+    }
+  }
+}
